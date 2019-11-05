@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstring>
+using namespace std; // C++의 명령어에서 한 부분을 생략하는 명령어 입니다.
+
+typedef struct Helpme {
+	int a;
+	char b;
+} Help_me; // 평범한 구조체
+
+int main(void) {
+	
+	char arr[10000];
+	Help_me su[26];
+	int alphabetsu = 0, newphabet = 0;
+	su[0].b = 97;
+	su[0].a = 0;
+
+	for (int i = 1; i < 26; i++) {
+		su[i].b = su[i - 1].b + 1;
+		su[i].a = 0;
+	}
+
+	cout << "영문 텍스트를 입력하세요. 히스토그램을 그립니다.\n텍스트의 끝은 ; 입니다. 10000개까지 가능합니다." << endl;
+	cin.getline(arr, 100000); // 문자에 스페이스가 나오거나 해도 쭉 이어서 쓰게 만든 명령어 입니다.
+
+
+	for (int i = 0; i<strlen(arr); i++)
+		if (isalpha(arr[i])) // 알파벳이라면 true 아니면 false
+			alphabetsu++; // 알파벳 개수 (' '은 생략입니다.)
+
+	cout << "총 알파벳 수는 " << alphabetsu << "입니다." << endl;
+
+	for (int i = 0; i<strlen(arr); i++) {
+		if (65 <= arr[i] && arr[i] <= 90)
+			arr[i] = tolower(arr[i]); // 대문자를 소문자로 바꾸는 명령어
+		for (int j = 0; j < 26; j++) {
+			if (su[j].b == arr[i])
+				su[j].a++;
+		}
+	}
+
+	for (int i = 0; i<26; i++) {
+		cout << su[i].b << "(" << su[i].a << ")   : ";
+		for (int j = 0; j < su[i].a; j++)
+			cout << "*";
+		cout << endl;
+	}
+
+	return 0;

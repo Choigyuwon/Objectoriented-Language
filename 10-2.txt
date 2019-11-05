@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+char classgrade(int grade){
+
+	if (grade < 0) {
+		throw "학점 : 100사이 아니라서 에외처리입니다.";
+	}
+	else if (grade > 100) {
+		throw "학점 : 100사이 아니라서 예외처리입니다.";
+	}
+	else if (grade <= 100 && grade >= 90) {
+		return 'A';
+	}
+	else if (grade <= 90 && grade > 80) {
+		return 'B';
+	}
+	else if (grade <= 80 && grade > 70) {
+		return 'C';
+	}
+	else if (grade <= 70 && grade > 60) {
+		return 'D';
+	}
+	else {
+		return 'F';
+	}
+}
+
+int main() {
+	try {
+		cout << "학점 : " << classgrade(90) << endl;
+		cout << "학점 : " << classgrade(120) << endl;
+	}
+	catch (const char* s) {
+		cout << s << endl;
+	}
+
+}

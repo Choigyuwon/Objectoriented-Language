@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+class Circle {
+	int radius;
+public:
+	Circle();
+	Circle(int r);
+	double getArea() { return 3.14*radius*radius; }
+};
+Circle::Circle() {
+	radius = 1;
+}
+Circle::Circle(int r) {
+	radius = r;
+}
+
+void swap(int &a, int &b) {
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+
+}
+int main() {
+	Circle waffle;
+	Circle apple(2);
+	cout << waffle.getArea() << "," << apple.getArea() << endl;
+	swap(waffle, apple);
+	cout << waffle.getArea() << "," << apple.getArea() << endl;
+
+}
+
+참조 매개 변수를 가진 함수의 선언은 void wap(int &a, int &b);로 한다.실인자를 참조하여 실인자와 공간을 고유하도록 하는
+전달방식이다. swap(waffle, apple);는 참조에 의한 호출이다. 변수 공간은 생기지 않으며 직접 가리킨다.

@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Shape {
+protected:
+	string name;
+	int width, height;
+public:
+	Shape(string n = "", int w = 0, int h = 0) { name = n; width = w; height = h; }
+	virtual string getName() = 0; 
+	virtual double getArea() = 0; 
+	//virtual double getArea() { return 0; }
+	//string getName() { return name; }
+};
+class Oval : public Shape {
+public:
+	Oval(string n, int w, int h) : Shape(n, w, h) {}
+	double getArea() { return width * height * 3.14; }
+	string getName() { return name; }
+};
+class Rect : public Shape {
+public:
+	Rect(string n, int w, int h) : Shape(n, w, h) {}
+	double getArea() { return width * height; }
+	string getName() { return name; }
+};
+class Triangular : public Shape {
+public:
+	Triangular(string n, int w, int h) : Shape(n, w, h) {}
+	double getArea() { return width * height / 2; }
+	string getName() { return name; }
+};
+int main(void)
+{
+	Shape *p[3]; 
+
+	p[0] = new Oval("빈대떡", 10, 20);
+	p[1] = new Rect("찰떡", 30, 40);
+	p[2] = new Triangular("토스트", 30, 40);
+for (int i = 0; i < 3; i++)
+	cout << p[i]->getName() << " 넓이는 " << p[i]->getArea() << endl;
+for (int i = 0; i < 3; i++) delete p[i]; 
+return 0;
+}
+=========================================================================
+
+7번에 주어진 Shape 클래스를 추상클래스로 만들기 위해 getArea()함수와 getName()함수를
+순수가상함수로 만들어주었다.추상클래스의 구현은 파생클래스에 추상클래스의 순수 가상함수의
+코드이기 때문이다. 모든 순수가상 함수를 오버라이딩하여 구현해야 하며 상속받는 클래스
+여야 한다. 이 프로그램은 넓이를 구하는 프로그램이다. 밑의 코드는 순수가상 함수로 만든
+것이다.
+	virtual string getName() = 0; 
+	virtual double getArea() = 0;

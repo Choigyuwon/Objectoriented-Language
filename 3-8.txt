@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Integer {
+private:
+	int nm;
+public:
+	Integer();
+	Integer(int n);
+	Integer(string s);
+	int get();
+	void set(int n);
+	bool isEven();
+};
+
+Integer::Integer() {
+
+}
+
+Integer::Integer(int n) {
+	nm = n;
+}
+Integer::Integer(string s) {
+	nm = stoi(s);
+}
+int Integer::get(){
+	return nm;
+}
+void Integer::set(int n) {
+	nm = n;
+}
+bool Integer::isEven() {
+	if (nm % 2 == 0) return true;
+	else return false;
+}
+
+
+
+int main() {
+	Integer n(30);
+	cout << n.get() << ' ';
+	n.set(50);
+	cout << n.get() << ' ';
+
+	Integer m("300");
+	cout << m.get() << ' ';
+	cout << m.isEven();
+}
+
+
+
